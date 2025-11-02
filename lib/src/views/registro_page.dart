@@ -13,7 +13,7 @@ class _SignUpPageState extends State<SignUpPage> {
   bool _obscureText = true;
   bool _obscureConfirmText = true;
 
-  // Controladores para todos los campos
+  
   final _nombreCompletoController = TextEditingController();
   final _celularController = TextEditingController();
   final _emailController = TextEditingController();
