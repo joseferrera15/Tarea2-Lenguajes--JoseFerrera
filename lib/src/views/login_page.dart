@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:todo_apps/src/shared/text_fields.dart';
 
 class LoginPage extends StatefulWidget {
     const LoginPage({super.key});
@@ -41,12 +42,32 @@ class _LoginPageState extends State<LoginPage>{
         return;
     }
     
-    // Aquí podrías agregar más validaciones
-    if (!_emailController.text.endsWith('@unah.edu')) {
+    // validacion de que se este utilizando el correo institucional
+    if (!_emailController.text.contains('jaferrerac@unah.hn')) {
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
                 content: Text(
                     'Use su correo institucional',
+                    textAlign: TextAlign.center, 
+                    style:TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold
+                        )
+                        ),
+                backgroundColor: Colors.red,
+                duration: Duration(seconds: 3),
+                
+                
+                ),
+        );
+        return;
+    }
+    //validacion que sea el numero de cuenta
+    if (!_passwordController.text.contains('20172000455')) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+                content: Text(
+                    'Contrasena incorrecta',
                     textAlign: TextAlign.center, 
                     style:TextStyle(
                         fontSize: 15,
@@ -122,7 +143,13 @@ class _LoginPageState extends State<LoginPage>{
                                                     border: Border(bottom: BorderSide(color:Colors.grey.shade200))
                                                 ),
                                                 //Los TextFields
-                                                child: TextField(
+                                                child: CustomTextField(
+                                                  controller: _emailController, 
+                                                  hintText: "Correo Institucional",
+                                                  onChanged: (value) => setState(() {}),
+                                                  
+                                                  )
+                                                /*TextField(
                                                     controller: _emailController,
                                                     onChanged: (value) => setState(() {}),
                                                     decoration: InputDecoration(
@@ -131,14 +158,22 @@ class _LoginPageState extends State<LoginPage>{
                                                         border: InputBorder.none
 
                                                     ),
-                                                ),
+                                                ),*/
                                             ),
                                             Container(
                                                 decoration: BoxDecoration(
                                                     border: Border(bottom: BorderSide(color:Colors.grey.shade200))
                                                 ),
                                                 //Los TextFields
-                                                child: TextField(
+                                                child: CustomTextField(
+                                                  controller: _passwordController, 
+                                                  hintText: "Contraseña",
+                                                  onChanged: (value) => setState(() {}),
+                                                  isPassword: true,
+
+                                                  )
+                                                
+                                                /*TextField(
                                                     controller: _passwordController,
                                                     onChanged: (value) => setState(() {}),
                                                     obscureText: _obscureText,
@@ -158,7 +193,7 @@ class _LoginPageState extends State<LoginPage>{
                                                         
 
                                                     ),
-                                                ),
+                                                ),*/
                                             ),
                                         ]
                                     ),
@@ -183,7 +218,7 @@ class _LoginPageState extends State<LoginPage>{
                                         
                                     ),
                                     onPressed: () { 
-
+                                        context.go('/registro');
                                     },
                                     child: Text('Registrarse'),
                                     )

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:todo_apps/src/views/admin_todo_page.dart';
 import 'package:todo_apps/src/views/home_page.dart';
 import 'package:todo_apps/src/views/login_page.dart';
+import 'package:todo_apps/src/views/registro_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
                 },
               ),
              
+             
             ],
             
           ),
@@ -45,6 +47,14 @@ class MyApp extends StatelessWidget {
                 name: 'login-page',
                 builder: (context, state) {
                    return const LoginPage();
+                },
+               
+              ),
+            GoRoute(
+                path: '/registro',
+                name: 'registro',
+                builder: (context, state) {
+                   return const SignUpPage();
                 },
                
               )
